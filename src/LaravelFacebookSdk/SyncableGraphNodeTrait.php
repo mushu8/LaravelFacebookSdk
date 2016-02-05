@@ -3,6 +3,7 @@
 use Illuminate\Database\Eloquent\Model;
 use Facebook\GraphNodes\GraphObject;
 use Facebook\GraphNodes\GraphNode;
+use Facebook\GraphNodes\GraphEdge;
 
 trait SyncableGraphNodeTrait
 {
@@ -72,7 +73,7 @@ trait SyncableGraphNodeTrait
     public static function newOrUpdateGraphNode($data)
     {
         // @todo this will be GraphNode soon
-        if ($data instanceof GraphObject || $data instanceof GraphNode) {
+        if ($data instanceof GraphObject || $data instanceof GraphNode || $data instanceof GraphEdge) {
             $data = array_dot($data->asArray());
         }
 
@@ -121,7 +122,6 @@ trait SyncableGraphNodeTrait
             && isset(static::$graph_node_field_aliases[$field])) {
             return static::$graph_node_field_aliases[$field];
         }
-
         return $field;
     }
 
