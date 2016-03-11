@@ -82,6 +82,7 @@ trait SyncableGraphNodeTrait
         if (! isset($data['id'])) {
             throw new \InvalidArgumentException('Graph node id is missing');
         }
+        var_dump($data);
 
         $attributes = [static::getGraphNodeKeyName() => $data['id']];
 
